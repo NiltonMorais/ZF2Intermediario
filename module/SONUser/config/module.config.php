@@ -9,10 +9,11 @@ return array(
                 "type"  => "Literal",
                 "options" => array(
                     'route' => '/register',
-                    '__NAMESPACE__' => 'SONUser\Controller',
-                    'controller'    => 'Index',
-                    'action'    =>  'register',
-                    
+                    'defaults' => array(
+                            '__NAMESPACE__' => 'SONUser\Controller',
+                            'controller'    => 'Index',
+                            'action'    =>  'register',
+                        )                    
                 )
             )
         )
