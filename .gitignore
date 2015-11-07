@@ -10,3 +10,4 @@ nbproject
 composer.lock
 vendor
 composer.phar
+!/composer.phar
