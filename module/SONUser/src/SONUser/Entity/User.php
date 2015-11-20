@@ -2,6 +2,8 @@
 namespace SONUser\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Zend\Math\Rand,
+    Zend\Crypt\Key\Derivation\Pbkdf2;
 
 /**
  * User
@@ -75,6 +77,100 @@ class User
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
     private $createdAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime("now");
+        $this->updatedAt = new \DateTime("now");  
+        
+        $this->salt = base64_encode(Rand::getBytes(8, true));
+        $this->activationKey = md5($this->email.$this->salt);
+    }
+    
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getNome() {
+        return $this->nome;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function getPassword() {
+        return $this->password;
+    }
+
+    public function getSalt() {
+        return $this->salt;
+    }
+
+    public function getActive() {
+        return $this->active;
+    }
+
+    public function getActivationKey() {
+        return $this->activationKey;
+    }
+
+    public function getUpdatedAt() {
+        return $this->updatedAt;
+    }
+
+    public function getCreatedAt() {
+        return $this->createdAt;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function setNome($nome) {
+        $this->nome = $nome;
+        return $this;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+        return $this;
+    }
+
+    public function setPassword($password) 
+    {
+        $this->password = $this->encryptPassword($password);
+        return $this;
+    }
+    public function encryptPassword($password)
+    {
+        return base64_decode(Pbkdf2::calc("sha256", $password, $this->salt, 10000, strlen($password*2)));
+    }
+    
+    public function setSalt($salt) {
+        $this->salt = $salt;
+        return $this;
+    }
+
+    public function setActive($active) {
+        $this->active = $active;
+        return $this;
+    }
+
+    public function setActivationKey($activationKey) {
+        $this->activationKey = $activationKey;
+        return $this;
+    }
+
+    public function setUpdatedAt(\DateTime $updatedAt) {
+        $this->updatedAt = $updatedAt;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt) {
+        $this->createdAt = $createdAt;
+    }
+
 
 
 }
