@@ -12,6 +12,7 @@ use Zend\Stdlib\Hydrator;
  *
  * @ORM\Table(name="sonuser_users")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class User
 {
@@ -167,13 +168,16 @@ class User
         $this->activationKey = $activationKey;
         return $this;
     }
-
-    public function setUpdatedAt(\DateTime $updatedAt) {
-        $this->updatedAt = $updatedAt;
+    
+    /**
+     * @ORM\prePersist
+     */
+    public function setUpdatedAt() {
+        $this->updatedAt = new \DateTime("now");
     }
 
-    public function setCreatedAt(\DateTime $createdAt) {
-        $this->createdAt = $createdAt;
+    public function setCreatedAt() {
+        $this->createdAt = new \DateTime("now");
     }
 
 
