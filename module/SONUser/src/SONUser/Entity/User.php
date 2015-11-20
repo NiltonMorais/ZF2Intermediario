@@ -5,6 +5,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Zend\Math\Rand,
     Zend\Crypt\Key\Derivation\Pbkdf2;
 
+use Zend\Stdlib\Hydrator;
+
 /**
  * User
  *
@@ -78,8 +80,11 @@ class User
      */
     private $createdAt;
 
-    public function __construct()
+    public function __construct(array $options = array())
     {
+        $hydrator = new Hydrator\ClassMethods;
+        $hydrator->hydrate($options, $this);
+        
         $this->createdAt = new \DateTime("now");
         $this->updatedAt = new \DateTime("now");  
         
