@@ -18,6 +18,14 @@ class LoadUser extends AbstractFixture{
         
         $manager->persist($user);
         
+        $user = new User();
+        $user->setNome("Admin")
+                ->setEmail("admin@teste.com")
+                ->setPassword("123456")
+                ->setActive(true);
+        
+        $manager->persist($user);
+        
         $manager->flush();        
     }
 
