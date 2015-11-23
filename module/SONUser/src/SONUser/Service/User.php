@@ -53,4 +53,20 @@ class User extends AbstractService{
         }
     }
     
+    public function update(array $data) 
+    {
+        $entity = $this->em->getReference($this->entity, $data['id']);
+        
+        if(empty($data['password'])){
+            unset($data['password']);
+        }
+            
+        (new Hydrator\ClassMethods())->hydrate($data, $entity);
+        
+        $this->em->persist($entity);
+        $this->em->flush();
+        
+        return $entity; 
+    }
+    
 }
