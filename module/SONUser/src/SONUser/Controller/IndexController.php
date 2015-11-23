@@ -33,4 +33,18 @@ class IndexController extends AbstractActionController{
         
         return new ViewModel(array('form' => $form, 'messages' => $messages));
     }
+    
+    public function activateAction()
+    {
+        $key = $this->params()->fromRoute('key');
+        $userService = $this->getServiceLocator()->get('SONUser\Service\User');
+        $result = $userService->activate($key);
+        
+        if($result){
+            return new ViewModel(array('user'=>$result));
+        }
+        else{
+            return new ViewModel();
+        }
+    }
 }
