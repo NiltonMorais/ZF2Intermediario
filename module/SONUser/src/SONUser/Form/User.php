@@ -10,6 +10,7 @@ class User extends Form{
         parent::__construct("user", $options);
         
         $this->setAttribute('method', "post");
+        $this->setInputFilter(new UserFilter());
         
         $id = new Zend\Form\Element\Hidden('id');
         $this->add($id);
