@@ -12,30 +12,30 @@ class User extends Form{
         $this->setAttribute('method', "post");
         $this->setInputFilter(new UserFilter());
         
-        $id = new Zend\Form\Element\Hidden('id');
+        $id = new \Zend\Form\Element\Hidden('id');
         $this->add($id);
         
-        $nome = new Zend\Form\Element\Text("nome");
+        $nome = new \Zend\Form\Element\Text("nome");
         $nome->setLabel("Nome: ")
                 ->setAttribute("placeholder", "Entre com um nome");
         $this->add($nome);        
         
-        $email = new Zend\Form\Element\Email("email");
+        $email = new \Zend\Form\Element\Email("email");
         $email->setLabel("Email: ")
                 ->setAttribute("placeholder", "Entre com um email");
         $this->add($email);
         
-        $password = new Zend\Form\Element\Password("password");
+        $password = new \Zend\Form\Element\Password("password");
         $password->setLabel("Senha: ")
                 ->setAttribute("placeholder", "Entre com uma senha");
         $this->add($password);
         
-        $confirmation = new Zend\Form\Element\Password("confirmation");
+        $confirmation = new \Zend\Form\Element\Password("confirmation");
         $confirmation->setLabel("Confirmar: ")
                 ->setAttribute("placeholder", "Confirme sua senha");
         $this->add($confirmation);
         
-        $csrf = new Zend\Form\Element\Csrf("security");
+        $csrf = new \Zend\Form\Element\Csrf("security");
         $this->add($csrf);
         
         $this->add(array(
