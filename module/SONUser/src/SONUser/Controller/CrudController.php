@@ -32,6 +32,23 @@ abstract class CrudController extends AbstractActionController
         return new ViewModel(array("data" => $paginator, "page" => $page));
     }
     
+    public function newAction()
+    {
+        $form = new $this->form();
+        $request = $this->getRequest();
+        
+        if($request->isPost()){
+            $form->setData($request->getPost());
+            
+            if($form->isValid()){
+                $service = $this->getServiceLocator()->get($this->service);
+                $service->insert($request->getPost()->toArray());
+                
+                return $this->redirect()->toRoute($this->route, array("controller" => $this->controller));
+            }
+        }
+    }
+    
     /**
      * 
      * @return EntityManager
