@@ -47,6 +47,8 @@ abstract class CrudController extends AbstractActionController
                 return $this->redirect()->toRoute($this->route, array("controller" => $this->controller));
             }
         }
+        
+        return new ViewModel(array("form" => $form));
     }
     
     /**
