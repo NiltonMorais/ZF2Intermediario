@@ -32,7 +32,7 @@ return array(
                     "route" => "/admin",
                     "defaults" => array(
                         '__NAMESPACE__' => "SONUser\Controller",
-                        "controller" => "Users",
+                        "controller" => "users",
                         "action" => "index"
                     )
                 ),
@@ -49,7 +49,7 @@ return array(
                             ),
                             "defaults" => array(
                                 "__NAMESPACE__" => "SONUser\Controller",
-                                "controller" => "Users"
+                                "controller" => "users"
                             )
                         )
                     ),
@@ -64,7 +64,7 @@ return array(
                             ),
                             "defaults" => array(
                                 "__NAMESPACE__" => "SONUser\Controller",
-                                "controller" => "Users"
+                                "controller" => "users"
                             )
                         )
                     )

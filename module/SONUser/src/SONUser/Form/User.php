@@ -17,22 +17,26 @@ class User extends Form{
         
         $nome = new \Zend\Form\Element\Text("nome");
         $nome->setLabel("Nome: ")
-                ->setAttribute("placeholder", "Entre com um nome");
+                ->setAttribute("placeholder", "Entre com um nome")
+                ->setAttribute("class", "form-control");
         $this->add($nome);        
         
         $email = new \Zend\Form\Element\Email("email");
         $email->setLabel("Email: ")
-                ->setAttribute("placeholder", "Entre com um email");
+                ->setAttribute("placeholder", "Entre com um email")
+                ->setAttribute("class", "form-control");
         $this->add($email);
         
         $password = new \Zend\Form\Element\Password("password");
         $password->setLabel("Senha: ")
-                ->setAttribute("placeholder", "Entre com uma senha");
+                ->setAttribute("placeholder", "Entre com uma senha")
+                ->setAttribute("class", "form-control");
         $this->add($password);
         
         $confirmation = new \Zend\Form\Element\Password("confirmation");
         $confirmation->setLabel("Confirmar: ")
-                ->setAttribute("placeholder", "Confirme sua senha");
+                ->setAttribute("placeholder", "Confirme sua senha")
+                ->setAttribute("class", "form-control");
         $this->add($confirmation);
         
         $csrf = new \Zend\Form\Element\Csrf("security");
