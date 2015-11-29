@@ -51,6 +51,32 @@ abstract class CrudController extends AbstractActionController
         return new ViewModel(array("form" => $form));
     }
     
+    public function editAction()
+    {
+        $id = $this->params()->fromRoute('id', 0);
+        $form = new $this->form();
+        $request = $this->getRequest();        
+        
+        if($id){
+            $repository = $this->getEm()->getRepository($this->entity);
+            $entity = $repository->find($id);
+            $form->setData($entity->toArray());
+        }
+        
+         if($request->isPost()){
+            $form->setData($request->getPost());
+            
+            if($form->isValid()){
+                $service = $this->getServiceLocator()->get($this->service);
+                $service->update($request->getPost()->toArray());
+                
+                return $this->redirect()->toRoute($this->route, array("controller" => $this->controller));
+            }
+        }
+        
+        return new ViewModel(array("form" => $form));
+    }
+    
     /**
      * 
      * @return EntityManager
