@@ -9,7 +9,7 @@ use Zend\Paginator\Paginator,
     Zend\Paginator\Adapter\ArrayAdapter;
 
 
-abstract class CrudController extends AbstractController
+abstract class CrudController extends AbstractActionController
 {
     protected $em;
     protected $service;
