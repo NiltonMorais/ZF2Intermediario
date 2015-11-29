@@ -2,7 +2,7 @@
 
 namespace SONUser\Controller;
 
-use Zend\Mvc\Controller\AbstractController,
+use Zend\Mvc\Controller\AbstractActionController,
     Zend\View\Model\ViewModel;
 
 use Zend\Paginator\Paginator,
@@ -27,7 +27,7 @@ abstract class CrudController extends AbstractActionController
         $page = $this->params()->fromRoute("page");
         $paginator = new Paginator(new ArrayAdapter($list));
         $paginator->setCurrentPageNumber($page)
-                ->setDefaultItemCountPerPage(1);
+                ->setDefaultItemCountPerPage(2);
         
         return new ViewModel(array("data" => $paginator, "page" => $page));
     }
