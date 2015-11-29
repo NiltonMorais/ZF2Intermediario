@@ -1,7 +1,7 @@
 <h1>Users</h1>
 
 <a href="<?php echo $this->url('sonuser-admin/default', array('action' => 'new'));?>" class="btn btn-primary">Novo</a>
-
+<br>
 <table class="table">
     <tr>
         <th>Id</th>
@@ -15,7 +15,10 @@
             <td><?php echo $entity->getId(); ?></td>
             <td><?php echo $entity->getNome(); ?></td>
             <td><?php echo $entity->getEmail(); ?></td>
-            <td></td>
+            <td>
+                <a class="btn-sm btn-primary" href="<?php echo $this->url('sonuser-admin/default',array('action'=>'edit', 'id'=>$entity->getId()));?>">Editar</a>
+                <a class="btn-sm btn-danger" href="<?php echo $this->url('sonuser-admin/default',array('action'=>'delete', 'id'=>$entity->getId()));?>">Deletar</a>
+            </td>
         </tr>    
     <?php endforeach;  ?>
 </table>

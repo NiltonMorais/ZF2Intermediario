@@ -2,6 +2,8 @@
 
 namespace SONUser\Controller;
 
+use Zend\View\Model\ViewModel;
+
 class UsersController extends CrudController {
     
     public function __construct()

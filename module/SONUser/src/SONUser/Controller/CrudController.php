@@ -77,6 +77,15 @@ abstract class CrudController extends AbstractActionController
         return new ViewModel(array("form" => $form));
     }
     
+    public function deleteAction()
+    {
+        $id = $this->params()->fromRoute('id',0);
+        $service = $this->getServiceLocator()->get($this->service);
+        if($service->delete($id)){
+            return $this->redirect()->toRoute($this->route, array("controller"=>$this->controller));
+        }
+    }
+    
     /**
      * 
      * @return EntityManager
