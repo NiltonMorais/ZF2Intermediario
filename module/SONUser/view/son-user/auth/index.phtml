@@ -12,7 +12,7 @@ $form = $this->form;
 $form->setAttribute('action', $this->url("sonuser-auth"));
 $form->prepare();
 
-echo $this->form->openTag($form);
+echo $this->form()->openTag($form);
 echo $this->formCollection($form);
 echo $this->form()->closeTag();
 

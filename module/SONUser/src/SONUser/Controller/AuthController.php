@@ -24,18 +24,18 @@ class AuthController extends AbstractActionController
                 $data = $request->getPost()->toArray();
                 
                 $sessionStorage = new SessionStorage("SONUser");
-                $authAdapter = $this->getServiceLocator()->get("SONUser\Auth\Adapter");
-                
                 $auth = new AuthenticationService;
                 $auth->setStorage($sessionStorage);
-                $auth->setUsername($data['email']);
-                $auth->setPassword($data['password']);
+                
+                $authAdapter = $this->getServiceLocator()->get("SONUser\Auth\Adapter");                
+                $authAdapter->setUsername($data['email']);
+                $authAdapter->setPassword($data['password']);
                 
                 $result = $auth->authenticate($authAdapter);
                 
                 if($result->isValid()){
                     $user = $auth->getIdentity();
-                    $sessionStorage->write($user['user']);
+                    $sessionStorage->write($user['user'], null);
                     return $this->redirect()->toRoute('sonuser-admin/default');
                 }
                 else{

@@ -26,6 +26,18 @@ return array(
                     )
                 )
             ),
+            "sonuser-auth"  => array(
+                'type'  => "Literal",
+                "options"   => array(
+                    "route" => "/auth",
+                    "defaults" => array(
+                        "__NAMESPACE__" => "SONUser\Controller",
+                        "controller" => "Auth",
+                        "action" => "index"
+                    )
+                )
+            ),
+            
             "sonuser-admin" => array(
                 "type" => "Literal",
                 "options" => array(
@@ -41,7 +53,7 @@ return array(
                     "default" => array(
                         "type" => 'Segment',
                         "options" => array(
-                            "route" => "/[:controller[/:action[/:id]]]",
+                            "route" => "/:controller[/:action[/:id]]",
                             "constraints" => array(
                                 "controller" => "[a-zA-Z][a-zA-Z0-9_-]*",
                                 "action" => "[a-zA-Z][a-zA-Z0-9_-]*",
@@ -76,6 +88,7 @@ return array(
         'invokables' => array(
             'SONUser\Controller\Index' => 'SONUser\Controller\IndexController',
             'SONUser\Controller\Users' => 'SONUser\Controller\UsersController',
+            'SONUser\Controller\Auth' => 'SONUser\Controller\AuthController',
         )
     ),
     'view_manager' => array(
