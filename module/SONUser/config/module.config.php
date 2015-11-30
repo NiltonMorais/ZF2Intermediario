@@ -38,6 +38,18 @@ return array(
                 )
             ),
             
+            "sonuser-logout"  => array(
+                'type'  => "Literal",
+                "options"   => array(
+                    "route" => "/auth/logout",
+                    "defaults" => array(
+                        "__NAMESPACE__" => "SONUser\Controller",
+                        "controller" => "Auth",
+                        "action" => "logout"
+                    )
+                )
+            ),
+            
             "sonuser-admin" => array(
                 "type" => "Literal",
                 "options" => array(
