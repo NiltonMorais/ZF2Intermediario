@@ -4,7 +4,7 @@
 <?php 
 
 $form = $this->form;
-$form->setAttribute('action',$this->url('sonuser-admin/default', array("controller"=>'users','action'=>'new')));
+$form->setAttribute('action',$this->url('sonuser-admin/default', array("controller"=>'users','action'=>'edit')));
 $form->prepare();
 
 echo $this->form()->openTag($form);

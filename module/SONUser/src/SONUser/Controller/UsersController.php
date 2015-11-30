@@ -12,7 +12,7 @@ class UsersController extends CrudController {
        $this->form = "SONUser\Form\User";
        $this->service = "SONUser\Service\User";
        $this->controller = "users";
-       $this->route = "sonuser-admin";
+       $this->route = "sonuser-admin/default";
     }
     
      public function editAction()
